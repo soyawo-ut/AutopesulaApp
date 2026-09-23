@@ -1,0 +1,128 @@
+﻿<Window x:Class="AutopesulaApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Autopesula tellimused"
+        Height="500"
+        Width="850">
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- INPUTS -->
+        <Grid Grid.Row="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="170"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="170"/>
+                <ColumnDefinition Width="220"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="RegistrationLabelText"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       Text="Registreerimisnumber"/>
+
+            <TextBox x:Name="RegistrationTextBox"
+                     Grid.Row="0"
+                     Grid.Column="1"
+                     Margin="5"/>
+
+            <TextBlock x:Name="VehicleLabelText"
+                       Grid.Row="0"
+                       Grid.Column="2"
+                       VerticalAlignment="Center"
+                       Text="Sõiduki liik"/>
+
+            <ComboBox x:Name="VehicleComboBox"
+                      Grid.Row="0"
+                      Grid.Column="3"
+                      Margin="5"/>
+
+            <TextBlock x:Name="ProgramLabelText"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       Text="Pesuprogramm"/>
+
+            <ComboBox x:Name="ProgramComboBox"
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      Margin="5"/>
+
+        </Grid>
+
+        <!-- BUTTONS -->
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    Margin="0,15,0,15">
+
+            <Button x:Name="AddButton"
+                    Width="100"
+                    Height="35"
+                    Margin="0,0,10,0"
+                    Content="Lisa"
+                    Click="AddButton_Click"/>
+
+            <Button x:Name="EditButton"
+                    Width="100"
+                    Height="35"
+                    Margin="0,0,10,0"
+                    Content="Muuda"
+                    Click="EditButton_Click"/>
+
+            <Button x:Name="DeleteButton"
+                    Width="100"
+                    Height="35"
+                    Content="Kustuta"
+                    Click="DeleteButton_Click"/>
+
+        </StackPanel>
+
+        <!-- DATA GRID -->
+        <DataGrid x:Name="OrdersDataGrid"
+                  Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  SelectionChanged="OrdersDataGrid_SelectionChanged">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Registreerimisnumber"
+                                    Binding="{Binding RegistrationNumber}"
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Sõiduk"
+                                    Binding="{Binding VehicleType}"
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Pesuprogramm"
+                                    Binding="{Binding WashProgram}"
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Hind (€)"
+                                    Binding="{Binding Price}"
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Kestus (min)"
+                                    Binding="{Binding DurationMinutes}"
+                                    Width="*"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </Grid>
+</Window>
